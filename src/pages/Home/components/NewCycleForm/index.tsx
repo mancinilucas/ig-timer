@@ -15,13 +15,14 @@ const newCycleFormValidationSchema = zod.object({
 type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 
 export function NewCycleForm() {
-  const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
-    resolver: zodResolver(newCycleFormValidationSchema),
-    defaultValues: {
-      task: '',
-      minutesAmount: 0,
-    },
-  })
+  const { register /* handleSubmit, watch, reset */ } =
+    useForm<NewCycleFormData>({
+      resolver: zodResolver(newCycleFormValidationSchema),
+      defaultValues: {
+        task: '',
+        minutesAmount: 0,
+      },
+    })
 
   return (
     <FormContainer>
@@ -29,7 +30,7 @@ export function NewCycleForm() {
       <TaskInput
         id="task"
         placeholder="Dê um nome para o seu projeto"
-        disabled={!!activeCycle}
+        /* disabled={!!activeCycle} */
         {...register('task')}
       />
 
@@ -41,7 +42,7 @@ export function NewCycleForm() {
         step={5}
         min={1}
         max={60}
-        disabled={!!activeCycle}
+        /* disabled={!!activeCycle} */
         {...register('minutesAmount', { valueAsNumber: true })}
       />
 
